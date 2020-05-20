@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "copy-webpack-plugin": "^5.1.1",
     "expose-loader": "^0.7.5",
     "ts-loader": "^7.0.4",
-    "typescript": "^3.9.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
   },
@@ -15,7 +15,7 @@
     "phaser": "^3.23.0"
   },
   "scripts": {
-    "dev": "webpack --mode development && webpack-dev-server --mode development",
-    "build": "webpack --mode production && webpack-dev-server --mode production"
+    "dev": "node_modules/.bin/webpack --mode development && node_modules/.bin/webpack-dev-server --mode development",
+    "build": "node_modules/.bin/webpack --mode production && node_modules/.bin/webpack-dev-server --mode production"
   }
 }

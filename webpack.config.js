@@ -1,30 +1,37 @@
-const path = require("path")
-const pathToPhaser = path.join(__dirname, "/node_modules/phaser/")
-const phaser = path.join(pathToPhaser, "dist/phaser.js")
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
+const pathToPhaser = path.join(__dirname, "/node_modules/phaser/");
+const phaser = path.join(pathToPhaser, "dist/phaser.js");
 
 module.exports = {
-    entry: "./index.ts",
+    entry: "./index.ts",            //エントリポイント。依存関係整理の起点にするファイル。
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        path: path.resolve(__dirname, "dist"),        //distというディレクトリに生成する
+        filename: "bundle.js"     //バンドルして書き出すファイル名
     },
     module: {
         rules: [
-            {test: /\.ts$/, loader: "ts-loader", exclude: "/node-modules"},
-            {test: /phaser\.js$/, loader: "expose-loader?Phaser"}
+            //.tsがケツにつくファイルを探索し、TypeScriptとして読み込む(ts-loader)
+            { test: /\.ts$/, loader: "ts-loader", exclude: "/node_modules/" },
+            //phaser-hogehoge.jsというファイルの内容はPhaserというグローバル変数に内容を突っ込む(expose-loader)
+            { test: /phaser\.js$/, loader: "expose-loader?Phaser" }
         ]
     },
+    //開発用サーバを立てるときの設定
     devServer: {
         contentBase: path.resolve(__dirname, "./"),
-        publickPath: "/dist/",
+        publicPath: "/dist/",
         host: "127.0.0.1",
-        port: 8765,
-        open:true
+        port: 8111,
+        open: true
     },
+
     resolve: {
+        //バンドル対象にするファイルを指定する
         extensions: [".ts", ".js"],
+        //import "phaser"ってしたときに読み込みに行くやつを指定する
         alias: {
             phaser: phaser
         }
     }
-}
+};
