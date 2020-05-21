@@ -3,4 +3,4 @@ import Loading from './loading-scene';
 import Title from './title-scene';
 
 export default [Loading, Main, Title];
-export { Main, Loading, Title };
+export { Main, Loading, Title};
